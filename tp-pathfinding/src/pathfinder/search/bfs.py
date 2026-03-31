@@ -18,9 +18,6 @@ class BreadthFirstSearch:
         # Initialize root node
         root = Node("", state=grid.initial, cost=0, parent=None, action=None)
 
-        if grid.objective_test(root.state):
-                return Solution(root, reached)
-        
         # frontier
         frontier = QueueFrontier()
         frontier.add(root)
@@ -28,6 +25,9 @@ class BreadthFirstSearch:
         # Initialize reached with the initial state
         reached = {}
         reached[root.state] = True
+
+        if grid.objective_test(root.state):
+                return Solution(root, reached)
 
         # Initialize frontier with the root node
         # TODO Complete the rest!!
