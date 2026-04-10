@@ -117,7 +117,7 @@ class Grid:
         state and the target
         """
 
-        dx = self.end[0] - current_state[0]
-        dy = self.end[1] - current_state[1]
+        dx = abs(self.end[0] - current_state[0])
+        dy = abs(self.end[1] - current_state[1])
 
         return dx + dy
