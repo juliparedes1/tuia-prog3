@@ -49,12 +49,12 @@ def estrategia_minimax(tateti: Tateti, estado: List[List[str]]) -> Tuple[int, in
     def minimax(tateti: Tateti, estado: List[List[str]]) -> Tuple[int, int]:
         
         if tateti.jugador(estado) == "X":
-            sucs = {accion: minimax_max(tateti, tateti.resultado(estado, accion)) 
+            sucs = {accion: minimax_min(tateti, tateti.resultado(estado, accion)) 
                     for accion in tateti.acciones(estado)}       
             return max(sucs, key=sucs.get)
     
         if tateti.jugador(estado) == "O":
-            sucs = {accion: minimax_min(tateti, tateti.resultado(estado, accion)) 
+            sucs = {accion: minimax_max(tateti, tateti.resultado(estado, accion)) 
                     for accion in tateti.acciones(estado)}       
             return min(sucs, key=sucs.get)
     
@@ -81,5 +81,6 @@ def estrategia_minimax(tateti: Tateti, estado: List[List[str]]) -> Tuple[int, in
             valor = min(valor, minimax_min(tateti, sucesor))    
             
         return valor   
+        
     
     return minimax(tateti, estado)
