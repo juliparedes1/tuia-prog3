@@ -78,7 +78,7 @@ def estrategia_minimax(tateti: Tateti, estado: List[List[str]]) -> Tuple[int, in
         valor = float("inf")
         for accion in tateti.acciones(estado):
             sucesor = tateti.resultado(estado, accion)
-            valor = min(valor, minimax_min(tateti, sucesor))    
+            valor = min(valor, minimax_max(tateti, sucesor))    
             
         return valor   
         
