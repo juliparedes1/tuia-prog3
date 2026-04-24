@@ -111,11 +111,20 @@ class Grid:
 
     def __repr__(self) -> str:
         return f"Grid([[...], ...], {self.initial}, {self.end})"
+    
     def manhattan(self, current_state: tuple[int, int]) -> int:
         """
         Returns the Manhattan distance between a current 
         state and the target
         """
+
+        # sea la heuristica de manhattan evaluada en el nodo n: h(n)
+        # luego la heuristica de manhattan de cualquier estado vecino a n, es h(n'), tal que h(n') >= h(n) - 1
+        # porque n' esta a lo sumo un casillero mas cerca del objetivo.
+        # por otro lado, el costo de moverse de un casillero a uno vecino COSTO-INDIVIDUAL(n.estado,a) es como minimo 1. 
+        # por lo tanto, h(n) <= COSTO-INDIVIDUAL(n.estado,a) + h(n') para cualquier accion a que se pueda realizar desde n, 
+        # y cualquier estado vecino n' que se pueda alcanzar desde n realizando a.
+        # por ultimo, la heuristica de manhattan es consistente, lo que garantiza completitud y optimalidad.
 
         dx = abs(self.end[0] - current_state[0])
         dy = abs(self.end[1] - current_state[1])
